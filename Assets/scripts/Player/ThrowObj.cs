@@ -11,8 +11,7 @@ public class ThrowObj : MonoBehaviour
     public Transform attackPoint;
     public GameObject objToThrow;
     private GameObject projectile;
-    [SerializeField] GameObject sun;
-    private Vector3 gravity;
+    private GameObject[] celestials;
 
     public int totalThrows;
     public float throwCooldown;
@@ -22,11 +21,14 @@ public class ThrowObj : MonoBehaviour
     public float throwUpwardForce;
 
     [SerializeField] Slider massSlider;
+
+    // Line renderer for trajectory
     [SerializeField] private LineRenderer LineRenderer;
     [SerializeField]
-    [Range(1, 20)] private int LinePoints = 10;
+    [Range(10, 100)] private int LinePoints = 30;  // Start with 30 points along the trajectory
     [SerializeField]
-    [Range(0.1f, 0.2f)] private float TimeBetweenPoints = 0.1f;
+    [Range(0.01f, 0.2f)] private float TimeBetweenPoints = 0.05f;  // 0.05 seconds between each point
+
 
     bool ready;
 
@@ -34,6 +36,7 @@ public class ThrowObj : MonoBehaviour
     void Start()
     {
         ready = true;
+        celestials = GameObject.FindGameObjectsWithTag("Celestial");
     }
 
     // Update is called once per frame
@@ -50,24 +53,66 @@ public class ThrowObj : MonoBehaviour
 
     private void DrawTrajectory()
     {
-        LineRenderer.enabled = true;
-        LineRenderer.positionCount = Mathf.CeilToInt(LinePoints / TimeBetweenPoints) + 1;
-        Vector3 startPositon = attackPoint.position;
-        Vector3 startVelocity = throwForce * cam.transform.forward / massSlider.value;
-        int i = 0;
-        LineRenderer.SetPosition(i, startPositon);
-        float m1 = massSlider.value;
-        float m2 = sun.GetComponent<Rigidbody>().mass;
-        float r = Vector3.Distance(startPositon, sun.transform.position);
-        gravity = (sun.transform.position - startPositon).normalized * (G * (m1 * m2) / (r * r));
-        for (float time = 0; time < LinePoints; time += TimeBetweenPoints)
+        // Initialize LineRenderer positions
+        LineRenderer.positionCount = LinePoints;
+
+        // Initial projectile position (starting at attackPoint)
+        Vector3 startPoint = attackPoint.position;
+
+        // Get direction of throw based on camera
+        Vector3 forceDirection = cam.transform.forward;
+        RaycastHit hit;
+
+        if (Physics.Raycast(cam.position, cam.forward, out hit, 5000f))
         {
-            i++;
-            Vector3 point = startPositon + startVelocity * time + gravity * time * time / 2f;
-            LineRenderer.SetPosition(i, point);
+            forceDirection = (hit.point - attackPoint.position).normalized;
         }
 
+        // Combine forces (forward and upward forces) for initial velocity
+        Vector3 initialVelocity = forceDirection * throwForce + transform.up * throwUpwardForce;
+
+        // Temporary variable to track current velocity (updated with gravity over time)
+        Vector3 currentVelocity = initialVelocity;
+
+        // Simulate the projectile's path and calculate points along the trajectory
+        Vector3 currentPosition = startPoint;
+
+        for (int i = 0; i < LinePoints; i++)
+        {
+            float time = i * TimeBetweenPoints;
+
+            // Update position based on velocity and time
+            currentPosition += currentVelocity * TimeBetweenPoints;
+
+            // Calculate gravitational effect from celestial bodies
+            Vector3 totalGravity = Vector3.zero;
+            foreach (GameObject celestial in celestials)
+            {
+                float m1 = massSlider.value;
+                float m2 = celestial.GetComponent<Rigidbody>().mass;
+                float distance = Vector3.Distance(currentPosition, celestial.transform.position);
+
+                // Apply gravitational force similar to the first script
+                Vector3 gravityForce = (celestial.transform.position - currentPosition).normalized * (G * (m1 * m2) / (distance * distance));
+                totalGravity += gravityForce;
+            }
+
+            // Update velocity based on gravity
+            currentVelocity += totalGravity * TimeBetweenPoints;
+
+            // Optional: Stop trajectory if a collision is detected
+            if (Physics.Raycast(currentPosition, currentVelocity.normalized, out RaycastHit hitInfo, TimeBetweenPoints))
+            {
+                LineRenderer.positionCount = i + 1;
+                LineRenderer.SetPosition(i, hitInfo.point);
+                break;
+            }
+
+            // Set the position in the LineRenderer
+            LineRenderer.SetPosition(i, currentPosition);
+        }
     }
+
 
     public void Throw()
     {

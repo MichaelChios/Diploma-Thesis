@@ -373,7 +373,7 @@ Canvas:
   m_GameObject: {fileID: 554200989}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -1273,7 +1273,6 @@ MonoBehaviour:
   cam: {fileID: 963194228}
   attackPoint: {fileID: 1711345127}
   objToThrow: {fileID: 5376911654165152769, guid: 7fabf62e7c713854d9b33b2d80669b5e, type: 3}
-  sun: {fileID: 1873711782}
   totalThrows: 100
   throwCooldown: 0.1
   throwKey: 323
@@ -1281,8 +1280,8 @@ MonoBehaviour:
   throwUpwardForce: 0
   massSlider: {fileID: 874523982}
   LineRenderer: {fileID: 1711345128}
-  LinePoints: 1
-  TimeBetweenPoints: 0.1
+  LinePoints: 30
+  TimeBetweenPoints: 0.05
 --- !u!114 &963194233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1982,11 +1981,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d03ad4d0768d52e4e84293f7517b61c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1873711782 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8088075491851325241, guid: 1350bfc690967654795b9ea8aa0980b6, type: 3}
-  m_PrefabInstance: {fileID: 1743937470}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1911850927
 PrefabInstance:
   m_ObjectHideFlags: 0
