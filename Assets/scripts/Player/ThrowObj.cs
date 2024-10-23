@@ -138,12 +138,11 @@ public class ThrowObj : MonoBehaviour
         // Set the parent of the instantiated object to the mixed reality scene content
         projectile.transform.SetParent(GameObject.Find("MixedRealitySceneContent").transform);
 
-        Debug.Log("Instantiated new projectile with ID: " + projectile.GetInstanceID());
-
+        //Debug.Log("Instantiated new projectile with ID: " + projectile.GetInstanceID());
 
         // Get rigidbody component
         Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
-        Debug.Log("New rb with ID: " + projectileRb.GetInstanceID());
+        //Debug.Log("New rb with ID: " + projectileRb.GetInstanceID());
 
         // Set mass equal to the slider value
         projectileRb.mass = massSlider.value;
