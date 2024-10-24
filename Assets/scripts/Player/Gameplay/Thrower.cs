@@ -9,19 +9,21 @@ using System.Collections;
 public class Thrower: MonoBehaviour
 {
     [SerializeField] int totalThrows = 0;
-    [SerializeField] Transform attackPoint;
+    [SerializeField] Transform defaultStartPoint;
     [SerializeField] Transform projectileParent;
 
     public float throwCooldown = 0.1f;
     public Rigidbody throwPrefab;
     public int TotalThrows => totalThrows;
+    public Transform DefaultStartPoint => defaultStartPoint;
 
     private Coroutine cor;
-    public Rigidbody ThrowWithCooldown(Vector3 force, float mass, float cooldown, Rigidbody toThrow = null)
+    public Rigidbody ThrowWithCooldown(Vector3 force, float mass, float cooldown, Rigidbody toThrow = null, Transform startPoint = null)
     {
         if (cor != null)
             return null;
-        var proj = Throw(force, mass, toThrow);
+
+        var proj = Throw(force, mass, toThrow, startPoint);
         
         // Check coroutines in Unity
         IEnumerator throwProjectile() {
@@ -37,14 +39,18 @@ public class Thrower: MonoBehaviour
         cor = StartCoroutine(throwProjectile());
         return proj;
     }
-    public Rigidbody Throw(Vector3 force, float mass, Rigidbody toThrow = null)
+    public Rigidbody Throw(Vector3 force, float mass, Rigidbody toThrow = null, Transform startPoint = null)
     {
         if (toThrow == null)
             toThrow = Instantiate(throwPrefab);
+
+        if (startPoint == null)
+            startPoint = defaultStartPoint;
+
         toThrow.transform.SetParent(projectileParent);
-        toThrow.position = attackPoint.position;
+        toThrow.transform.position = startPoint.position;
         toThrow.mass = mass;
-        toThrow.AddForce(force);
+        toThrow.AddForce(force, ForceMode.Impulse);
         totalThrows++;
 
         return toThrow;

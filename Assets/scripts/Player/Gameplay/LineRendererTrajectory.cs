@@ -27,10 +27,9 @@ public class LineRendererTrajectory: BaseTrajectoryRenderer
         // Simulate the projectile's path and calculate points along the trajectory
         Vector3 currentPosition = startPoint;
 
+        int pointCount = 0;
         for (int i = 0; i < linePoints; i++)
         {
-            float time = i * betweenPoints;
-
             // Update position based on velocity and time
             currentPosition += currentVelocity * betweenPoints;
 
@@ -55,12 +54,17 @@ public class LineRendererTrajectory: BaseTrajectoryRenderer
             {
                 lineRenderer.positionCount = i + 1;
                 lineRenderer.SetPosition(i, hitInfo.point);
-                Debug.Log("CRAASHED");
+                Debug.Log($"{i} {hitInfo.collider.name}", hitInfo.collider);
                 break;
             }
+            pointCount++;
 
             // Set the position in the LineRenderer
             lineRenderer.SetPosition(i, currentPosition);
         }
+
+        lineRenderer.positionCount = pointCount;
+        // Check managed vs unmanaged memory in Unity and C#
+        // lineRenderer.SetPositions()
     }
 }
