@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class TargetCollisionDetection : MonoBehaviour
+public class GoalDetection : MonoBehaviour
 {
     public string projectileTag = "Projectile";  // Tag for identifying the projectile
     private int goals = 0;

@@ -9,14 +9,11 @@ public class projectileGravity : MonoBehaviour
     //can increase to make thing go faster instead of increase timestep of Unity
     readonly float G = 0.0001f;
     GameObject[] celestials;
-    GameObject[] projectiles;
-    public Vector3 gravity;
 
     // Start is called before the first frame update
     void Start()
     {
         celestials = GameObject.FindGameObjectsWithTag("Celestial");
-        projectiles = GameObject.FindGameObjectsWithTag("Projectile");
     }
 
     // Update is called once per frame
@@ -31,16 +28,12 @@ public class projectileGravity : MonoBehaviour
 
     void Gravity()
     {
-        foreach (GameObject a in projectiles)
+        foreach (GameObject celestial in celestials)
         {
-            foreach (GameObject b in celestials)
-            {
-                float m1 = a.GetComponent<Rigidbody>().mass;
-                float m2 = b.GetComponent<Rigidbody>().mass;
-                float r = Vector3.Distance(a.transform.position, b.transform.position);
-                gravity = (b.transform.position - a.transform.position).normalized * (G * (m1 * m2) / (r * r));
-                a.GetComponent<Rigidbody>().AddForce(gravity);
-            }
+            float m1 = this.gameObject.GetComponent<Rigidbody>().mass;
+            float m2 = celestial.GetComponent<Rigidbody>().mass;
+            float r = Vector3.Distance(this.gameObject.transform.position, celestial.transform.position);
+            this.gameObject.GetComponent<Rigidbody>().AddForce((celestial.transform.position - this.gameObject.transform.position).normalized * (G * (m1 * m2) / (r * r)));
         }
     }
 }

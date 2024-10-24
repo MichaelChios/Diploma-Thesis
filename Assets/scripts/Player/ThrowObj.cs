@@ -10,8 +10,6 @@ public class ThrowObj : MonoBehaviour
     public Transform cam;
     public Transform attackPoint;
     public GameObject objToThrow;
-    //private GameObject projectile;
-    private GameObject[] celestials;
 
     public int totalThrows;
     public float throwCooldown;
@@ -22,6 +20,7 @@ public class ThrowObj : MonoBehaviour
 
     [SerializeField] Slider massSlider;
     [SerializeField] Slider throwForceSlider;
+    [SerializeField] Transform parent;
 
     // Line renderer for trajectory
     [SerializeField] private LineRenderer LineRenderer;
@@ -38,7 +37,6 @@ public class ThrowObj : MonoBehaviour
     void Start()
     {
         ready = true;
-        //celestials = GameObject.FindGameObjectsWithTag("Celestial");
     }
 
     // Update is called once per frame
@@ -90,16 +88,6 @@ public class ThrowObj : MonoBehaviour
             // Calculate gravitational effect from celestial bodies
             Vector3 totalGravity = Vector3.zero;
 
-            //foreach (GameObject celestial in celestials)
-            //{
-            //    float m1 = massSlider.value;
-            //    float m2 = celestial.GetComponent<Rigidbody>().mass;
-            //    float distance = Vector3.Distance(currentPosition, celestial.transform.position);
-
-            //    // Apply gravitational force similar to the first script
-            //    Vector3 gravityForce = (celestial.transform.position - currentPosition).normalized * (G * (m1 * m2) / (distance * distance));
-            //    totalGravity += gravityForce;
-            //}
             foreach(Rigidbody celestialRb in celestialsRb)
             {
                 float m1 = massSlider.value;
@@ -128,21 +116,15 @@ public class ThrowObj : MonoBehaviour
     }
 
 
-    public void Throw()
+    private void Throw()
     {
         ready = false;
 
-        // Instantiate object to throw
-        GameObject projectile = Instantiate(objToThrow, attackPoint.position, cam.rotation);
-
-        // Set the parent of the instantiated object to the mixed reality scene content
-        projectile.transform.SetParent(GameObject.Find("MixedRealitySceneContent").transform);
-
-        //Debug.Log("Instantiated new projectile with ID: " + projectile.GetInstanceID());
+        // Instantiate object to throw in mixed reality scene content
+        GameObject projectile = Instantiate(objToThrow, attackPoint.position, cam.rotation, parent);
 
         // Get rigidbody component
         Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
-        //Debug.Log("New rb with ID: " + projectileRb.GetInstanceID());
 
         // Set mass equal to the slider value
         projectileRb.mass = massSlider.value;
@@ -155,7 +137,7 @@ public class ThrowObj : MonoBehaviour
 
         RaycastHit hit;
 
-        if (Physics.Raycast(cam.position, cam.forward, out hit, 5000f))
+        if (Physics.Raycast(cam.position, cam.forward, out hit, 500f))
         {
             forceDirection = (hit.point - attackPoint.position).normalized;
         }
