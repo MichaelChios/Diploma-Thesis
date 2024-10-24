@@ -13,6 +13,7 @@ public class ThrowObj : MonoBehaviour
 
     public int totalThrows;
     public float throwCooldown;
+    public Thrower thrower;
 
     public KeyCode throwKey = KeyCode.Mouse1;
     private float throwForce;
@@ -29,7 +30,6 @@ public class ThrowObj : MonoBehaviour
     [SerializeField]
     [Range(0.01f, 0.2f)] private float TimeBetweenPoints = 0.05f;  // 0.05 seconds between each point
     [SerializeField] List<Rigidbody> celestialsRb = new();
-
 
     bool ready;
 
