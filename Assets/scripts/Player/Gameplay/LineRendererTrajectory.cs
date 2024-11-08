@@ -54,7 +54,7 @@ public class LineRendererTrajectory: BaseTrajectoryRenderer
             {
                 lineRenderer.positionCount = i + 1;
                 lineRenderer.SetPosition(i, hitInfo.point);
-                Debug.Log($"{i} {hitInfo.collider.name}", hitInfo.collider);
+                //Debug.Log($"{i} {hitInfo.collider.name}", hitInfo.collider);
                 break;
             }
             pointCount++;

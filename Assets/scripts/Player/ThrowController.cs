@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Microsoft.MixedReality.Toolkit.UI;
 
 public class ThrowController : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class ThrowController : MonoBehaviour
 
     public KeyCode throwKey = KeyCode.Mouse1;
     
-    [SerializeField] Slider massSlider;
+    [SerializeField] PinchSlider massSlider;
     [SerializeField] Slider throwForceSlider;
     [SerializeField] List<Rigidbody> celestialsRb = new();
 
@@ -42,7 +43,11 @@ public class ThrowController : MonoBehaviour
         }
         // Combine forces (forward and upward forces) for initial velocity
         Vector3 initialVelocity = forceDirection * throwForceSlider.value;
-        var mass = massSlider.value;
+        if (massSlider.SliderValue <= 0.1f)
+        {
+            massSlider.SliderValue = 1;
+        }
+        var mass = massSlider.SliderValue * 10f;
 
         // Draw trajectory
         trajectRenderer.Draw(startPoint, initialVelocity, mass, celestialsRb);
