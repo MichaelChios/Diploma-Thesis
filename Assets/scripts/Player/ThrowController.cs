@@ -14,8 +14,8 @@ public class ThrowController : MonoBehaviour
 
     public KeyCode throwKey = KeyCode.Mouse1;
     
-    [SerializeField] PinchSlider massSlider;
-    [SerializeField] Slider throwForceSlider;
+    [SerializeField] MassPinchSliderRemapper massSlider;
+    [SerializeField] ThrowForcePinchSliderRemapper throwForceSlider;
     [SerializeField] List<Rigidbody> celestialsRb = new();
 
     [SerializeField] Thrower thrower;
@@ -42,12 +42,9 @@ public class ThrowController : MonoBehaviour
             forceDirection = (hit.point - attackPoint.position).normalized;
         }
         // Combine forces (forward and upward forces) for initial velocity
-        Vector3 initialVelocity = forceDirection * throwForceSlider.value;
-        if (massSlider.SliderValue <= 0.1f)
-        {
-            massSlider.SliderValue = 1;
-        }
-        var mass = massSlider.SliderValue * 10f;
+        Vector3 initialVelocity = forceDirection * throwForceSlider.TFRemappedValue;
+
+        var mass = massSlider.MRemappedValue;
 
         // Draw trajectory
         trajectRenderer.Draw(startPoint, initialVelocity, mass, celestialsRb);
