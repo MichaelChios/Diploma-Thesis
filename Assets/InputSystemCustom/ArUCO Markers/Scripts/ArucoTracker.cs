@@ -60,33 +60,33 @@ public class ArucoTracker : MonoBehaviour
 
     private void StartTracking()
     {
-#if ENABLE_WINMD_SUPPORT
-        // Get the unity spatial coordinate system
-        try
-        {
-            _unityCoordinateSystem = PerceptionInterop.GetSceneCoordinateSystem(Pose.identity) as SpatialCoordinateSystem;
-            Debug.Log("Successfully cached pointer to Unity spatial coordinate system.");
-        }
-        catch (Exception ex)
-        {
-            status.text = $"Failed to get Unity spatial coordinate system: {ex.Message}.";
-        }
+//#if ENABLE_WINMD_SUPPORT
+//        // Get the unity spatial coordinate system
+//        try
+//        {
+//            _unityCoordinateSystem = PerceptionInterop.GetSceneCoordinateSystem(Pose.identity) as SpatialCoordinateSystem;
+//            Debug.Log("Successfully cached pointer to Unity spatial coordinate system.");
+//        }
+//        catch (Exception ex)
+//        {
+//            status.text = $"Failed to get Unity spatial coordinate system: {ex.Message}.";
+//        }
 
-        // Configure the dll with input parameters
-        var layout = boardPositions.GetLayout();
+//        // Configure the dll with input parameters
+//        var layout = boardPositions.GetLayout();
         
-        status.text = "Setting dll";
-        try
-        {
-            //This will never be null, I think
-            detector = new ArucoDetector((int)ArUcoDictionaryName, layout);
-            camIntrinsics = null;
-        }
-        catch(Exception e){
-            status.text = $"{e.Message}";
-        }
-        mediaCapturer.onFrameArrived += HandleArUcoTracking;
-#endif
+//        status.text = "Setting dll";
+//        try
+//        {
+//            //This will never be null, I think
+//            detector = new ArucoDetector((int)ArUcoDictionaryName, layout);
+//            camIntrinsics = null;
+//        }
+//        catch(Exception e){
+//            status.text = $"{e.Message}";
+//        }
+//        mediaCapturer.onFrameArrived += HandleArUcoTracking;
+//#endif
     }
 
     private void StopTracking()
