@@ -5,12 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SolarSystem2.1.unity
     guid: 03189a74d3af2a54da990764a2c375bb
   - enabled: 0
     path: Assets/Scenes/SmartphoneJoystick.unity
     guid: 73a52956c15965740b04147e1725585c
+  - enabled: 1
+    path: Assets/Scenes/TestScene.unity
+    guid: 97b3ea8f0f26ac7448b584fbaa0baa2e
   m_configObjects:
     com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: c86483b56bf257f409f997dcb6ad0bc9, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: fdd90d58bbb665848943da517c2685cf, type: 2}
