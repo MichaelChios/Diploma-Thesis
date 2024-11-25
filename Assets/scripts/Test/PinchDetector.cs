@@ -66,7 +66,8 @@ public class PinchDetector : MonoBehaviour
         //Debug.Log(accAction.ReadValue<int>());
         if (touchScreen != null)
         {
-            Debug.Log($"Touchscreen: {touchScreen.primaryTouch.position.ReadValue()}");
+            Debug.Log($"Touchscreen Position: {touchScreen.primaryTouch.position.ReadValue()}");
+            Debug.Log($"Touchscreen Press: {touchScreen.press.ReadValue()}");
         }
     }
 
