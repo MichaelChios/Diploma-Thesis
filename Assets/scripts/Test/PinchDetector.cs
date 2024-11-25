@@ -18,7 +18,23 @@ public class PinchDetector : MonoBehaviour
     Touchscreen touchScreen;
     private void Awake()
     {
-
+        InputSystem.onDeviceChange += (device, change) =>
+        {
+            if (device is Touchscreen)
+            {
+                switch (change)
+                {
+                    case InputDeviceChange.Added:
+                        touchScreen = (Touchscreen)device;
+                        break;
+                    case InputDeviceChange.Removed:
+                        touchScreen = null;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        };
     }
 
     private void OnEnable()
@@ -32,7 +48,6 @@ public class PinchDetector : MonoBehaviour
         secFingerPosAction = phoneServer.ActionAssetInstance.FindAction(secFingerPosActionPath);
         //secTouchConAction = phoneServer.ActionAssetInstance.FindAction(secTouchConPath);
         accAction = phoneServer.ActionAssetInstance.FindAction(accPath);
-        touchScreen = InputSystem.GetDevice<Touchscreen>();
 
     }
 
@@ -45,12 +60,15 @@ public class PinchDetector : MonoBehaviour
     //    }
     //}
 
-    //private void Update()
-    //{
-    //    PinchDetect(primFingerPosAction.ReadValue<Vector2>(), secFingerPosAction.ReadValue<Vector2>());
-    //    //Debug.Log(accAction.ReadValue<int>());
-
-    //}
+    private void Update()
+    {
+        //PinchDetect(primFingerPosAction.ReadValue<Vector2>(), secFingerPosAction.ReadValue<Vector2>());
+        //Debug.Log(accAction.ReadValue<int>());
+        if (touchScreen != null)
+        {
+            Debug.Log($"Touchscreen: {touchScreen.primaryTouch.position.ReadValue()}");
+        }
+    }
 
     public void checkPrim(InputAction.CallbackContext ctx)
     {

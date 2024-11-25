@@ -39,6 +39,9 @@ public class DeviceServer : MonoBehaviour
     public InputActionAsset ActionAssetInstance => actionAssetInstance;
     public bool haveDevicesChanged = false;
     public Dictionary<short, Action<IIncommingMessage>> Operations { get; private set; } = new Dictionary<short, Action<IIncommingMessage>>();
+    public event Action<InputDevice> deviceAdded;
+    public event Action<InputDevice> deviceRemoved;
+
     private void Awake()
     {
         //Init Server Actions
