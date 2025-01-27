@@ -50,6 +50,7 @@ public class Thrower: MonoBehaviour
         toThrow.transform.SetParent(projectileParent);
         toThrow.transform.position = startPoint.position;
         toThrow.mass = mass;
+        toThrow.GetComponent<projectileGravity>().enabled = true;
         toThrow.AddForce(force, ForceMode.Impulse);
         totalThrows++;
 

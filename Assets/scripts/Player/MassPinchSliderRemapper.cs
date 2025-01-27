@@ -29,9 +29,6 @@ public class MassPinchSliderRemapper : MonoBehaviour
 
         // Remap the slider value to the new range
         MRemappedValue = Remap(currentValue, inputMin, inputMax, outputMin, outputMax);
-
-        // Log the value for debugging
-        Debug.Log($"Original Value: {currentValue}, Remapped Value: {MRemappedValue}");
     }
 
     private float Remap(float value, float from1, float to1, float from2, float to2)

@@ -106,7 +106,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
                 },
                 {
                     ""name"": ""MoveTouch"",
@@ -143,6 +143,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Press"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShootAction"",
+                    ""type"": ""Value"",
+                    ""id"": ""6306c2a9-c538-472e-b23c-a9b8dc0c0c22"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -226,7 +235,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""50b94093-076b-49ef-bef4-e6ccb415298a"",
-                    ""path"": ""<Touchscreen>/touch0/tap"",
+                    ""path"": ""<Touchscreen>/Press"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -288,6 +297,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""SecondaryTouchContact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b9a09b83-59dc-444b-a109-99f5aff4211b"",
+                    ""path"": ""<Touchscreen>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShootAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -321,6 +341,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Phone_PrimaryFingerPosition = m_Phone.FindAction("PrimaryFingerPosition", throwIfNotFound: true);
         m_Phone_SecondaryFingerPosition = m_Phone.FindAction("SecondaryFingerPosition", throwIfNotFound: true);
         m_Phone_SecondaryTouchContact = m_Phone.FindAction("SecondaryTouchContact", throwIfNotFound: true);
+        m_Phone_ShootAction = m_Phone.FindAction("ShootAction", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -395,6 +416,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Phone_PrimaryFingerPosition;
     private readonly InputAction m_Phone_SecondaryFingerPosition;
     private readonly InputAction m_Phone_SecondaryTouchContact;
+    private readonly InputAction m_Phone_ShootAction;
     public struct PhoneActions
     {
         private @InputActions m_Wrapper;
@@ -412,6 +434,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @PrimaryFingerPosition => m_Wrapper.m_Phone_PrimaryFingerPosition;
         public InputAction @SecondaryFingerPosition => m_Wrapper.m_Phone_SecondaryFingerPosition;
         public InputAction @SecondaryTouchContact => m_Wrapper.m_Phone_SecondaryTouchContact;
+        public InputAction @ShootAction => m_Wrapper.m_Phone_ShootAction;
         public InputActionMap Get() { return m_Wrapper.m_Phone; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -460,6 +483,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @SecondaryTouchContact.started += instance.OnSecondaryTouchContact;
             @SecondaryTouchContact.performed += instance.OnSecondaryTouchContact;
             @SecondaryTouchContact.canceled += instance.OnSecondaryTouchContact;
+            @ShootAction.started += instance.OnShootAction;
+            @ShootAction.performed += instance.OnShootAction;
+            @ShootAction.canceled += instance.OnShootAction;
         }
 
         private void UnregisterCallbacks(IPhoneActions instance)
@@ -503,6 +529,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @SecondaryTouchContact.started -= instance.OnSecondaryTouchContact;
             @SecondaryTouchContact.performed -= instance.OnSecondaryTouchContact;
             @SecondaryTouchContact.canceled -= instance.OnSecondaryTouchContact;
+            @ShootAction.started -= instance.OnShootAction;
+            @ShootAction.performed -= instance.OnShootAction;
+            @ShootAction.canceled -= instance.OnShootAction;
         }
 
         public void RemoveCallbacks(IPhoneActions instance)
@@ -544,5 +573,6 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnPrimaryFingerPosition(InputAction.CallbackContext context);
         void OnSecondaryFingerPosition(InputAction.CallbackContext context);
         void OnSecondaryTouchContact(InputAction.CallbackContext context);
+        void OnShootAction(InputAction.CallbackContext context);
     }
 }

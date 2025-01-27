@@ -392,14 +392,13 @@ GameObject:
   - component: {fileID: 357900370}
   - component: {fileID: 357900369}
   - component: {fileID: 357900368}
-  - component: {fileID: 357900371}
   m_Layer: 5
   m_Name: ShootButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &357900367
 RectTransform:
   m_ObjectHideFlags: 0
@@ -417,8 +416,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 107, y: -159}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -429, y: -159}
+  m_SizeDelta: {x: 160, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &357900368
 MonoBehaviour:
@@ -502,18 +501,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 357900366}
   m_CullTransparentMesh: 1
---- !u!114 &357900371
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 357900366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b9ea2e83c270b942af4aa3fdc22c35f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &664153022
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -556,11 +543,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1196314446330220116, guid: 5ea4185cf8e73fc46b4f918676c6eb6d, type: 3}
       propertyPath: sensorsToConnect.Array.data[1].device
-      value: <Accelerometer>
+      value: <LinearAccelerationSensor>
       objectReference: {fileID: 0}
     - target: {fileID: 1196314446330220116, guid: 5ea4185cf8e73fc46b4f918676c6eb6d, type: 3}
       propertyPath: sensorsToConnect.Array.data[2].device
-      value: <Accelerometer>
+      value: <LinearAccelerationSensor>
       objectReference: {fileID: 0}
     - target: {fileID: 4292619584268257036, guid: 5ea4185cf8e73fc46b4f918676c6eb6d, type: 3}
       propertyPath: port
@@ -1758,6 +1745,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1950081648}
   m_CullTransparentMesh: 1
+--- !u!1 &2124313870
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2124313872}
+  - component: {fileID: 2124313871}
+  m_Layer: 0
+  m_Name: ButtonDetector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &2124313871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124313870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a1b2b42bfc432a4fb3733d219468a9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonRectTransform: {fileID: 357900367}
+--- !u!4 &2124313872
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124313870}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 379.4517, y: 396.9073, z: -494.73383}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1768,3 +1800,4 @@ SceneRoots:
   - {fileID: 1103029094}
   - {fileID: 664153022}
   - {fileID: 1355714377}
+  - {fileID: 2124313872}

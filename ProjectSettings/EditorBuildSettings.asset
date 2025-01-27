@@ -8,10 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SolarSystem2.1.unity
     guid: 03189a74d3af2a54da990764a2c375bb
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/SmartphoneJoystick.unity
     guid: 73a52956c15965740b04147e1725585c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TestScene.unity
     guid: 97b3ea8f0f26ac7448b584fbaa0baa2e
   m_configObjects:
