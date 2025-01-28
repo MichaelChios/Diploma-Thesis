@@ -12,6 +12,7 @@ public class SpawnController : MonoBehaviour
     public GameObject prefab;
     public GameObject drawer;
     [SerializeField] ActionsController actionsController;
+    public ShootController shooter;
 
     private void Awake()
     {
@@ -35,8 +36,10 @@ public class SpawnController : MonoBehaviour
                 prefab.transform.SetParent(spawnParent);
                 prefab.transform.position = spawnPoint.position;
                 actionsController.SetSpawnReady(false);
+                actionsController.SetShootReady(true);
                 prefab.GetComponent<PinchDetector>().enabled = true;
                 drawer.GetComponent<DrawSpawnedTrajectory>().enabled = true;
+                shooter.GetComponent<ShootController>().enabled = true;
             }
         }
         else

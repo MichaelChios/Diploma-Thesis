@@ -15,7 +15,6 @@ public class PinchDetector : MonoBehaviour
     private Coroutine zoomCoroutine;
     private Rigidbody rb;
     Touchscreen touchScreen;
-    [SerializeField] ActionsController actionsController;
 
     private void Awake()
     {

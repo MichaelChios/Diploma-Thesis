@@ -309,7 +309,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1783334146}
   - {fileID: 673417416}
   - {fileID: 587701741}
   - {fileID: 1832315499}
@@ -1030,6 +1029,7 @@ MonoBehaviour:
   prefab: {fileID: 5376911654165152769, guid: 7fabf62e7c713854d9b33b2d80669b5e, type: 3}
   drawer: {fileID: 1832315498}
   actionsController: {fileID: 587701740}
+  shooter: {fileID: 1524177136}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -2290,7 +2290,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1524177134}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 06eeae26c0ef4d945b08ce56e2ff2985, type: 3}
   m_Name: 
@@ -2299,6 +2299,9 @@ MonoBehaviour:
   pressActionPath: Phone/ShootAction
   force: 10
   touchPosition: {x: 0, y: 0}
+  cam: {fileID: 963194228}
+  attackPoint: {fileID: 1711345127}
+  actionsController: {fileID: 587701740}
 --- !u!1 &1543613143
 GameObject:
   m_ObjectHideFlags: 0
@@ -3048,83 +3051,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa985872e77b740458b05aebb5bdc0c6, type: 3}
---- !u!1 &1783334145
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1783334146}
-  - component: {fileID: 1783334148}
-  - component: {fileID: 1783334147}
-  m_Layer: 0
-  m_Name: Throw Controller
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1783334146
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1783334145}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 259688730}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1783334147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1783334145}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80d1d7af64a04934ba5693c53a38872d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  totalThrows: 0
-  defaultStartPoint: {fileID: 0}
-  projectileParent: {fileID: 772490393}
-  throwCooldown: 0.1
-  throwPrefab: {fileID: 699257492416695694, guid: 7fabf62e7c713854d9b33b2d80669b5e, type: 3}
---- !u!114 &1783334148
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1783334145}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c21d26b66cf0fc34391466e2af6f1b4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 963194228}
-  attackPoint: {fileID: 1711345127}
-  throwCooldown: 0.1
-  throwKey: 98
-  massSlider: {fileID: 0}
-  throwForceSlider: {fileID: 0}
-  celestialsRb:
-  - {fileID: 1743937473}
-  - {fileID: 1978628925}
-  - {fileID: 552819063}
-  - {fileID: 477690854}
-  - {fileID: 1055603562}
-  - {fileID: 1911850930}
-  thrower: {fileID: 1783334147}
-  trajectRenderer: {fileID: 259688728}
 --- !u!1 &1794701359
 GameObject:
   m_ObjectHideFlags: 0

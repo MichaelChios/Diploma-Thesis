@@ -62,11 +62,6 @@ public class ThrowController : MonoBehaviour, IMixedRealityGestureHandler
 
         // Draw trajectory
         trajectRenderer.Draw(startPoint, initialVelocity, mass, celestialsRb);
-
-        //if (Input.GetKeyDown(throwKey) && ready)
-        //{
-        //    thrower.ThrowWithCooldown(initialVelocity, mass, throwCooldown, startPoint: attackPoint);
-        //}
     }
 
     public void OnGestureStarted(InputEventData eventData)
