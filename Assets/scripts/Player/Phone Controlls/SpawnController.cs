@@ -32,12 +32,12 @@ public class SpawnController : MonoBehaviour
         {
             if (ctx.started)
             {
-                prefab = Instantiate(prefab);
-                prefab.transform.SetParent(spawnParent);
-                prefab.transform.position = spawnPoint.position;
+                GameObject spawnedObj = Instantiate(prefab);
+                spawnedObj.transform.SetParent(spawnParent);
+                spawnedObj.transform.position = spawnPoint.position;
                 actionsController.SetSpawnReady(false);
                 actionsController.SetShootReady(true);
-                prefab.GetComponent<PinchDetector>().enabled = true;
+                spawnedObj.GetComponent<PinchDetector>().enabled = true;
                 drawer.GetComponent<DrawSpawnedTrajectory>().enabled = true;
                 shooter.GetComponent<ShootController>().enabled = true;
             }

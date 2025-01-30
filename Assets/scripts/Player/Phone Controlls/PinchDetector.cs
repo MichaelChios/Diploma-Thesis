@@ -55,13 +55,11 @@ public class PinchDetector : MonoBehaviour
 
     private void ZoomStart()
     {
-        //actionsController.SetShootReady(false);
         zoomCoroutine = StartCoroutine(PinchDetect());
     }
 
     private void ZoomEnd()
     {
-        //actionsController.SetShootReady(true);
         StopCoroutine(zoomCoroutine);
     }
 
