@@ -1712,7 +1712,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 658444633}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
-<<<<<<< Updated upstream
 --- !u!1 &673417415
 GameObject:
   m_ObjectHideFlags: 0
@@ -1763,8 +1762,6 @@ MonoBehaviour:
   drawer: {fileID: 0}
   actionsController: {fileID: 587701740}
   shooter: {fileID: 0}
-=======
->>>>>>> Stashed changes
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
