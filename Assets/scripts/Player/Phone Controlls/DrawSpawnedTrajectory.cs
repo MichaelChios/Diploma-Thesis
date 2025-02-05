@@ -14,10 +14,14 @@ public class DrawSpawnedTrajectory : MonoBehaviour
     private Rigidbody rb;
     float throwForce;
 
-    private void Start()
+    private void OnEnable()
     {
-        projectile = GameObject.FindGameObjectWithTag("Projectile");
-        rb = projectile.GetComponent<Rigidbody>();
+        GameObject[] projectiles = GameObject.FindGameObjectsWithTag("Projectile");
+        if(projectiles.Length > 0)
+        {
+            projectile = projectiles[projectiles.Length - 1];
+            rb = projectile.GetComponent<Rigidbody>();
+        }
     }
 
     // Update is called once per frame
