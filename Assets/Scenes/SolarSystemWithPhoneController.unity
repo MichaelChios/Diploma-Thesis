@@ -855,9 +855,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 1711345127}
   spawnParent: {fileID: 772490393}
   prefab: {fileID: 5376911654165152769, guid: 7fabf62e7c713854d9b33b2d80669b5e, type: 3}
-  drawer: {fileID: 1832315498}
   actionsController: {fileID: 587701740}
-  forceAdjuster: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1101,8 +1099,6 @@ MonoBehaviour:
   pressActionPath: Phone/ShootAction
   force: 10
   touchPosition: {x: 0, y: 0}
-  cam: {fileID: 963194228}
-  attackPoint: {fileID: 1711345127}
   actionsController: {fileID: 587701740}
 --- !u!1001 &959428373
 PrefabInstance:
@@ -1788,6 +1784,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1524177135}
+  - component: {fileID: 1524177136}
   m_Layer: 0
   m_Name: Shooter
   m_TagString: Untagged
@@ -1810,6 +1807,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 259688730}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1524177136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1524177134}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15ea00e0d8357bd4faa430356e9bd875, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  phoneServer: {fileID: 959428374}
+  pressActionPath: Phone/ShootAction
+  touchPosition: {x: 0, y: 0}
+  cam: {fileID: 963194228}
+  attackPoint: {fileID: 1711345127}
+  actionsController: {fileID: 587701740}
+  forceController: {fileID: 776727323}
 --- !u!1 &1711345126
 GameObject:
   m_ObjectHideFlags: 0
@@ -2181,7 +2197,7 @@ MonoBehaviour:
   - {fileID: 1055603562}
   - {fileID: 1911850930}
   trajectRenderer: {fileID: 259688728}
-  forceController: {fileID: 0}
+  forceController: {fileID: 776727323}
 --- !u!1001 &1911850927
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2754,6 +2770,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7272087891524984824, guid: 0ad1495a2a7862641b1e62fc4dc86f52, type: 3}
+      propertyPath: drawer
+      value: 
+      objectReference: {fileID: 1832315498}
+    - target: {fileID: 7272087891524984824, guid: 0ad1495a2a7862641b1e62fc4dc86f52, type: 3}
+      propertyPath: forceAdjuster
+      value: 
+      objectReference: {fileID: 776727323}
+    - target: {fileID: 7272087891524984824, guid: 0ad1495a2a7862641b1e62fc4dc86f52, type: 3}
+      propertyPath: shootController
+      value: 
+      objectReference: {fileID: 1524177136}
+    - target: {fileID: 7272087891524984824, guid: 0ad1495a2a7862641b1e62fc4dc86f52, type: 3}
+      propertyPath: spawnController
+      value: 
+      objectReference: {fileID: 673417417}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

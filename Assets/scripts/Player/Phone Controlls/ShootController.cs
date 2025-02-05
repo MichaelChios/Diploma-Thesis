@@ -10,7 +10,7 @@ public class ShootController : MonoBehaviour
     private InputAction pressAction;
 
     // Button Region (screen-space coordinates)
-    private readonly Rect buttonRegion = new Rect(207, 261, 480, 240);
+    private readonly Rect buttonRegion = new Rect(950, 261, 480, 240);
     public Vector2 touchPosition;
 
     public Transform cam;
@@ -26,7 +26,15 @@ public class ShootController : MonoBehaviour
     void Start()
     {
         pressAction = phoneServer.ActionAssetInstance.FindAction(pressActionPath);
-        projectile = GameObject.FindGameObjectWithTag("Projectile");
+    }
+
+    void OnEnable()
+    {
+        GameObject[] projectiles = GameObject.FindGameObjectsWithTag("Projectile");
+        if(projectiles.Length > 0)
+        {
+            projectile = projectiles[projectiles.Length - 1];
+        }
         rb = projectile.GetComponent<Rigidbody>();
         ready = true;
     }
@@ -34,10 +42,17 @@ public class ShootController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (actionsController.shootReady)
+        {
+            touchPosition = pressAction.ReadValue<Vector2>();
+            if (ready && IsTouchInShootButtonRegion(touchPosition))
+            {
+                Shoot();
+            }
+        }
     }
 
-    private bool IsTouchInForceButtonRegion(Vector2 touchPosition)
+    private bool IsTouchInShootButtonRegion(Vector2 touchPosition)
     {
         // Check if the touch position is within the button region
         return buttonRegion.Contains(touchPosition);
