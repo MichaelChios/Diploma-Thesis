@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,19 +7,12 @@ public class ShootController : MonoBehaviour
 {
     [SerializeField] private DeviceServer phoneServer;
     [SerializeField] private string pressActionPath;
-
     private InputAction pressAction;
-    public float force = 10f; // Current force value
-    private bool isIncreasing = true; // Determines if the force is increasing or decreasing
-    private float step = 10f; // Step value for increasing/decreasing force
 
     // Button Region (screen-space coordinates)
-    private readonly Rect buttonRegion = new Rect(691, 341, 851, 421);
+    private readonly Rect buttonRegion = new Rect(207, 261, 480, 240);
     public Vector2 touchPosition;
 
-    private Coroutine adjustForceCor;
-
-    readonly float G = 0.0001f;
     public Transform cam;
     public Transform attackPoint;
     bool ready;
@@ -26,41 +20,24 @@ public class ShootController : MonoBehaviour
     private Rigidbody rb;
 
     [SerializeField] ActionsController actionsController;
+    [SerializeField] ForceController forceController;
 
+    // Start is called before the first frame update
     void Start()
     {
         pressAction = phoneServer.ActionAssetInstance.FindAction(pressActionPath);
-        pressAction.started += _ => AdjustStart();
-        pressAction.canceled += _ => AdjustEnd();
         projectile = GameObject.FindGameObjectWithTag("Projectile");
         rb = projectile.GetComponent<Rigidbody>();
         ready = true;
     }
 
-    private void AdjustStart()
-    {
-        if (adjustForceCor == null && actionsController.shootReady)
-        {
-            adjustForceCor = StartCoroutine(AdjustForce());
-        }
-    }
-
-    private void AdjustEnd()
-    {
-        if (adjustForceCor != null)
-        {
-            StopCoroutine(adjustForceCor);
-            adjustForceCor = null;
-            Shoot();
-        }
-    }
-
+    // Update is called once per frame
     void Update()
     {
-
+        
     }
 
-    private bool IsTouchInButtonRegion(Vector2 touchPosition)
+    private bool IsTouchInForceButtonRegion(Vector2 touchPosition)
     {
         // Check if the touch position is within the button region
         return buttonRegion.Contains(touchPosition);
@@ -78,7 +55,7 @@ public class ShootController : MonoBehaviour
             forceDirection = (hit.point - attackPoint.position).normalized;
         }
         // Combine forces (forward and upward forces) for initial velocity
-        Vector3 initialVelocity = forceDirection * force;
+        Vector3 initialVelocity = forceDirection * forceController.force;
         var mass = rb.mass;
         projectile.GetComponent<IgnoreCollisionWithCelestials>().enabled = false;
         projectile.GetComponent<projectileGravity>().enabled = true;
@@ -88,37 +65,5 @@ public class ShootController : MonoBehaviour
         }
         actionsController.SetShootReady(false);
         actionsController.SetSpawnReady(true);
-    }
-
-    IEnumerator AdjustForce()
-    {
-        while (true)
-        {
-            touchPosition = pressAction.ReadValue<Vector2>();
-            if (IsTouchInButtonRegion(touchPosition))
-            {
-                // Scale the step with Time.deltaTime for smoother adjustment
-                float scaledStep = step * Time.deltaTime;
-                if (isIncreasing)
-                {
-                    force += scaledStep;
-                    if (force >= 100f)
-                    {
-                        force = 100f;
-                        isIncreasing = false; // Switch direction
-                    }
-                }
-                else
-                {
-                    force -= scaledStep;
-                    if (force <= 10f)
-                    {
-                        force = 10f;
-                        isIncreasing = true; // Switch direction
-                    }
-                }
-            }
-            yield return null;
-        }
     }
 }

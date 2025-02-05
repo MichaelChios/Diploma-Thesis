@@ -9,7 +9,7 @@ public class DrawSpawnedTrajectory : MonoBehaviour
     public Transform attackPoint;
     [SerializeField] List<Rigidbody> celestialsRb = new();
     public BaseTrajectoryRenderer trajectRenderer;
-    public ShootController shootController;
+    public ForceController forceController;
     private GameObject projectile;
     private Rigidbody rb;
     float throwForce;
@@ -28,7 +28,7 @@ public class DrawSpawnedTrajectory : MonoBehaviour
         // Get direction of throw based on camera
         Vector3 forceDirection = cam.transform.forward;
         // Force value
-        throwForce = shootController.force;
+        throwForce = forceController.force;
         RaycastHit hit;
         if (Physics.Raycast(cam.position, cam.forward, out hit, 500f))
         {

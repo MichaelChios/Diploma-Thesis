@@ -313,6 +313,7 @@ Transform:
   - {fileID: 587701741}
   - {fileID: 1832315499}
   - {fileID: 1524177135}
+  - {fileID: 776727322}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &397075895
@@ -856,7 +857,7 @@ MonoBehaviour:
   prefab: {fileID: 5376911654165152769, guid: 7fabf62e7c713854d9b33b2d80669b5e, type: 3}
   drawer: {fileID: 1832315498}
   actionsController: {fileID: 587701740}
-  shooter: {fileID: 1524177136}
+  forceAdjuster: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1052,6 +1053,57 @@ Transform:
   - {fileID: 554200990}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &776727321
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 776727322}
+  - component: {fileID: 776727323}
+  m_Layer: 0
+  m_Name: Force Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &776727322
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776727321}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 259688730}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &776727323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776727321}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06eeae26c0ef4d945b08ce56e2ff2985, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  phoneServer: {fileID: 959428374}
+  pressActionPath: Phone/ShootAction
+  force: 10
+  touchPosition: {x: 0, y: 0}
+  cam: {fileID: 963194228}
+  attackPoint: {fileID: 1711345127}
+  actionsController: {fileID: 587701740}
 --- !u!1001 &959428373
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1736,7 +1788,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1524177135}
-  - component: {fileID: 1524177136}
   m_Layer: 0
   m_Name: Shooter
   m_TagString: Untagged
@@ -1759,25 +1810,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 259688730}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1524177136
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1524177134}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06eeae26c0ef4d945b08ce56e2ff2985, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  phoneServer: {fileID: 959428374}
-  pressActionPath: Phone/ShootAction
-  force: 10
-  touchPosition: {x: 0, y: 0}
-  cam: {fileID: 963194228}
-  attackPoint: {fileID: 1711345127}
-  actionsController: {fileID: 587701740}
 --- !u!1 &1711345126
 GameObject:
   m_ObjectHideFlags: 0
@@ -2149,7 +2181,7 @@ MonoBehaviour:
   - {fileID: 1055603562}
   - {fileID: 1911850930}
   trajectRenderer: {fileID: 259688728}
-  shootController: {fileID: 1524177136}
+  forceController: {fileID: 0}
 --- !u!1001 &1911850927
 PrefabInstance:
   m_ObjectHideFlags: 0
