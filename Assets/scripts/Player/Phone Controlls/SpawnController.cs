@@ -11,9 +11,6 @@ public class SpawnController : MonoBehaviour
     public Transform spawnParent;
     public GameObject prefab;
     [SerializeField] ActionsController actionsController;
-    //public GameObject drawer;
-    //public ForceController forceAdjuster;
-    //public ShootController shootController;
 
     private void Awake()
     {
@@ -39,9 +36,6 @@ public class SpawnController : MonoBehaviour
                 spawnedObj.GetComponent<PinchDetector>().enabled = true;
                 actionsController.SetSpawnReady(false);
                 actionsController.SetShootReady(true);
-                //drawer.GetComponent<DrawSpawnedTrajectory>().enabled = true;
-                //forceAdjuster.GetComponent<ForceController>().enabled = true;
-                //shootController.GetComponent<ShootController>().enabled = true;
             }
         }
         else
