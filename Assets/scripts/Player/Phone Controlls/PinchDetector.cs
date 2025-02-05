@@ -14,28 +14,6 @@ public class PinchDetector : MonoBehaviour
     InputAction secTouchConAction;
     private Coroutine zoomCoroutine;
     private Rigidbody rb;
-    Touchscreen touchScreen;
-
-    private void Awake()
-    {
-        InputSystem.onDeviceChange += (device, change) =>
-        {
-            if (device is Touchscreen)
-            {
-                switch (change)
-                {
-                    case InputDeviceChange.Added:
-                        touchScreen = (Touchscreen)device;
-                        break;
-                    case InputDeviceChange.Removed:
-                        touchScreen = null;
-                        break;
-                    default:
-                        break;
-                }
-            }
-        };
-    }
 
     private void OnEnable()
     {
