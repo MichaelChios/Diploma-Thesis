@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 699257492416695694}
   - component: {fileID: 6380440289700241368}
   - component: {fileID: 1781518882873312750}
-  - component: {fileID: -7173373080571444851}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Projectile
@@ -165,17 +164,3 @@ MonoBehaviour:
   secFingerPosActionPath: Phone/SecondaryFingerPosition
   secTouchConPath: Phone/SecondaryTouchContact
   scaleSpeed: 1
-  actionsController: {fileID: 7272087891524984824, guid: 0ad1495a2a7862641b1e62fc4dc86f52, type: 3}
---- !u!114 &-7173373080571444851
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5376911654165152769}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 576ff79a7e61ca4469ff7f9e1bc27895, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  celestialTag: Celestial

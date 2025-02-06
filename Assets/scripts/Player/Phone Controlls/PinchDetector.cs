@@ -38,7 +38,12 @@ public class PinchDetector : MonoBehaviour
 
     private void ZoomEnd()
     {
-        StopCoroutine(zoomCoroutine);
+        // This ensures that the coroutine is stopped when the touch is released
+        if (zoomCoroutine != null)
+        {
+            StopCoroutine(zoomCoroutine);
+            zoomCoroutine = null;
+        }
     }
 
     IEnumerator PinchDetect()
@@ -60,7 +65,7 @@ public class PinchDetector : MonoBehaviour
                 targetScale -= Vector3.one * scaleSpeed;
                 rb.mass -= 1;
             }
-            targetScale = new Vector3(Mathf.Clamp(targetScale.x, 1f, 10f), Mathf.Clamp(targetScale.y, 1f, 10f), Mathf.Clamp(targetScale.z, 1f, 10f));
+            targetScale = new Vector3(Mathf.Clamp(targetScale.x, 1f, 5f), Mathf.Clamp(targetScale.y, 1f, 5f), Mathf.Clamp(targetScale.z, 1f, 5f));
             transform.localScale = Vector3.Lerp(transform.localScale, targetScale, Time.deltaTime * 10f);
             rb.mass = Mathf.Clamp(rb.mass, 1f, 10f);
             previousDistance = currDistance;

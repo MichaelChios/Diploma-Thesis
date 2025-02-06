@@ -72,7 +72,6 @@ public class ShootController : MonoBehaviour
         // Combine forces (forward and upward forces) for initial velocity
         Vector3 initialVelocity = forceDirection * forceController.force;
         var mass = rb.mass;
-        projectile.GetComponent<IgnoreCollisionWithCelestials>().enabled = false;
         projectile.GetComponent<projectileGravity>().enabled = true;
         if (ready)
         {

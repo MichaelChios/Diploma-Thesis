@@ -25,6 +25,7 @@ public class TimerCountdown : MonoBehaviour
         {
             timeRemaining = 0;
             timerText.color = Color.red;
+            Time.timeScale = 0; // Pause the game
         }
         int minutes = Mathf.FloorToInt(timeRemaining / 60);
         int seconds = Mathf.FloorToInt(timeRemaining % 60);
