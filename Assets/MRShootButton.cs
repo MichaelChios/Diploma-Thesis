@@ -14,6 +14,7 @@ public class MRShootButton : MonoBehaviour, IMixedRealityTouchHandler
     [SerializeField] ThrowForcePinchSliderRemapper throwForceSlider;
     [SerializeField] Thrower thrower;
     bool ready;
+
     // Start is called before the first frame update
     void Start()
     {
