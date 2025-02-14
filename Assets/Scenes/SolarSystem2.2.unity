@@ -3361,7 +3361,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 963194228}
-  offset: {x: 0, y: -0.19, z: 0.65}
+  offset: {x: 0, y: -0.1, z: 0.65}
 --- !u!114 &965345369
 MonoBehaviour:
   m_ObjectHideFlags: 0
