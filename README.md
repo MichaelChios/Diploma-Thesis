@@ -1,2 +1,3 @@
-# SolarSystem2.1
+# Diploma Thesis
  
+Detailed explanation in the thesis report.
