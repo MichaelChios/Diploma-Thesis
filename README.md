@@ -1,3 +1,3 @@
 # Diploma Thesis
  
-Detailed explanation in the thesis report.
+Expansion and evaluation of Mixed Reality interaction controllers using a mobile phone.
